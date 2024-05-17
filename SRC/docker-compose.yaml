@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: ./front-end
+    ports:
+      - "3000:3000"
+    depends_on:
+      - offer-banners
+      - offer-db
+
+  offer-banners:
+    build:
+      context: ./offerBanner
+    ports:
+      - "8080:8080"
+
+  offer-db:
+    build:
+      context: ./OfferDB
+    ports:
+      - "4000:4000"
+    volumes:
+      - ./OfferDB/offers.db:/usr/src/app/offers.db
